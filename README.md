@@ -1,393 +1,184 @@
-Prac 1 
-Aim: Design a simple machine learning model (Linear Regression) g instances and test the same using Python.
+Prac 1 : RSA
 
-import random
-from sklearn.linear_model import LinearRegression
+RSA, named after its creators Rivest, Shamir, and Adleman, is a prevalent public-key cryptosystem pivotal in secure data transmission. It operates with a pair of keys: a public one for 
+encryption and a private one for decryption. Its security hinges on the challenge of factoring large prime numbers, making it a stalwart defense. RSA finds extensive application in internet security, safeguarding emails, digital signatures, and HTTPS connections. However, as computing power advances, longer key lengths are advised to uphold its security standards.
 
-feature_set = []
-target_set = []
+install pycryptodome
 
-rows = 200
-limit = 2000
+from Crypto.Publickey import RSA from Crypto import Random
+from Crypto.Cipher import PKCS1_v1_5
+random generator = Random. new() .read key = RSA.generate(4096, random_generator)message = b'Lokesh KFMSCIT004
+cipher = PKCS1_v1_5.new(key)
+encrypted message = cipher.encrypt(message)
+decrypted message = cipher .decrypt(encrypted message,None)
+print("Encrypted message:", encrypted message)
+print("Decrypted message:", decrypted_ message)
 
+Prac 2 : IP configuration 
 
-for i in range(0,rows):
- x = random.randint(0,limit)
- y = random.randint(0,limit)
- z = random.randint(0,limit)
- g = 10*x + 2*y + 3*z
- print("x=",x,"\ty=",y,"\tz=",z,"\tg=",g);
+ IP Config Command:
+To access network-related details on a Windows system, utilize the "ipconfig" command within the Command Prompt. Upon execution, this command will present a comprehensive overview of network configurations for all interfaces. It encompasses vital information such as IP addresses, subnet masks, default gateways, and additional network interface specifics.
 
-feature_set.append([x,y,z])
-target_set.append(g)
+ipconfig/all
+This command provides in-depth insights into all network interfaces present on your Windows system. It covers a range of essential details, including IP configuration, MAC address, subnet 
+mask, default gateway, DNS servers, and additional relevant information.
 
-model = LinearRegression()
-model.fit(feature_set,target_set)
+ipconfig /displaydns
+ This command reveals the contents of the DNS resolver cache within your Windows system. It presents a listing of recently resolved DNS names along with their corresponding IP addresses.
 
-Test_Data = [[1,2,1]]
-prediction = model.predict(Test_Data)
+ ipconfig /flushdns
+This command serves to flush (clear) the DNS resolver cache, eliminating all entries stored within it. This action prompts the system to re-query DNS servers for subsequent domain resolutions.
 
-print('Prediction:'+str(prediction)+'\t'+ 'Coefficient:'+str(model.coef_))
+wmic os get osarchitecture
+This Windows Management Instrumentation Command-line (WMIC) query retrieves information about the operating system architecture (32-bit or 64-bit). When you run this command, it will display either "32-bit" or "64-bit," indicating the architecture of your operating system.
 
 
-Prac 2
-Aim: For a given set of training data examples stored in a .CSV file implement Logistic Regression algorithm.
+Prac 3 : Browser History Examiner (BHE)
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix, accuracy_score
+Browser History Examiner (BHE) is a forensic software tool designed to capture, analyze, and generate reports on internet history gleaned from primary desktop web browsers. 
+ Its utility extends to a spectrum of digital investigations, including civil and criminal digital 
+forensics cases, security incidents, human resources inquiries, and the monitoring of general employee activity.
 
-dataset = pd.read_csv("C:/Users/Lokesh/Downloads/diabetes.csv")
-print(dataset.head())
+Step-1: Download and install the BHE from https://www.foxtonforensics.com/browser-history-examiner/download
+Step-2: Upon successful installation and initiation of BHE, it will prompt the user to choose between capturing new history data or loading existing history files.
+Step-3: The tool will inquire whether you wish to capture historical data from the current computer or from a remote one. Following that, it will prompt you to specify the browser whose history you intend to capture and designate the destination for storing the captured data.
+Step-4: It will start capturing the data and will show the captured data so we can analyze it.
 
-x = dataset.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7]].values
-y = dataset.iloc[:, [-1]].values
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=100)
+Prac 4 : Grabify
 
-sc = StandardScaler()
-x_train = sc.fit_transform(x_train)
-x_test = sc.transform(x_test)
+Grabify operates as a URL shortening service, akin to platforms like Bitly or TinyURL. However, it has garnered a reputation for its potential involvement in malicious activities. This is due to its capability to 
+track and gather information about users who click on the shortened links it generates. Consequently, Grabify has been linked to various privacy and security concerns, as it has been utilized in phishing schemes, online harassment, and other nefarious endeavors. As such, users should exercise vigilance when encountering shortened URLs, particularly those from unfamiliar or dubious sources.
 
-model = LogisticRegression()
-model.fit(x_train, y_train) # Train the model
+Here's how it typically works:
+
+1) A user creates a shortened URL using Grabify.
+2) When someone clicks on the Grabify link, it redirects them to the intended destination.
+3) In the background, Grabify logs various information about the visitor, including their IP address, device details, location, and other data.
 
-y_pred = model.predict(x_test)
-
-cm = confusion_matrix(y_test, y_pred)
-
-print("Confusion Matrix :\n ", cm)
-print("Accuracy :", accuracy_score(y_test, y_pred) * 100)
-
-
-Prac 3
-Aim: Introduction to R programming
-
-#Creating Variables in R:
-
-var1<-var2<-var3<-"orange"
-print(var1)
-print(var2)
-print(var3)
-
-
-#R plotting :
-
-plot(c(1,8),c(3,10))
-
-
-#R Plotting, R Line, Color, Width & Multiline:
-
-l1<-c(1,2,3,4,5,10)
-l2<-c(2,5,7,8,9,10)
-plot(l1,type="l",col="blue")
-lines(l2,type="l",col="red")
-
-
-#Scatter Plot:
-
-x<-c(5,7,8,7,2,2,9,4,11,12,9,6)
-y<-c(99,86,87,88,111,103,87,94,78,75,85,86)
-plot(x,y,main="Observation of cars",xlab="car age",ylab="Car Speed")
-
-
-#Bar charts
-
-x<-c("A","B","C","D")
-y<-c(2,4,6,8)
-barplot(y,name.arg=x,main="Bar Chart")
-
-
-#concatenate elements
-
-text1<-"R is"
-text2<-"awesome"
-cat(text1,text2)
-
-
-Prac 2B
-Aim: Write a program to implement k-Nearest Neighbor algorithm to classify the following data set.
-
-import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
-
-x = [4, 5, 10, 4, 3, 11, 14 , 8, 10, 12]
-y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
-
-classes = [0, 0, 1, 0, 0, 1, 1, 0, 1, 1]
-
-plt.scatter(x, y, c=classes)
-plt.show()
-
-data = list(zip(x, y))
-print(data)
-
-model = KNeighborsClassifier(n_neighbors=1)
-model.fit(data, classes)
-
-new_x = 8
-new_y = 21
-new_point = [(new_x, new_y)]
-
-prediction = model.predict(new_point)
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.show()
-
-model = KNeighborsClassifier(n_neighbors=5)
-model.fit(data, classes)
-
-prediction = model.predict(new_point)
-
-print(prediction)
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.show()
-
-
-Prac 3
-Aim : Naive Bayes Algorithm
-
-
-!pip install pgmpy
-
-import pandas as pd
-from pgmpy.estimators import MaximumLikelihoodEstimator
-from pgmpy.models import BayesianModel
-from pgmpy.inference import VariableElimination
-
-data = pd.read_csv("C:/Users/Lokesh/Downloads/ds4.csv")
-heart_disease = pd.DataFrame(data)
-print(heart_disease)
-
-model = BayesianModel([
- ('age', 'Lifestyle'),
- ('Gender', 'Lifestyle'),
- ('Family', 'heartdisease'),
- ('diet', 'cholestrol'),
- ('Lifestyle', 'diet'),
- ('cholestrol', 'heartdisease'),
- ('diet', 'cholestrol')
-])
-
-model.fit(heart_disease, estimator=MaximumLikelihoodEstimator)
-
-HeartDisease_infer = VariableElimination(model)
-
-print('For Age enter SuperSeniorCitizen:0, SeniorCitizen:1, MiddleAged:2, Youth:3, Teen:4')
-
-print('For Gender enter Male:0, Female:1')
-
-print('For Family History enter Yes:1, No:0')
-
-print('For Diet enter High:0, Medium:1')
-
-print('for LifeStyle enter Athlete:0, Active:1, Moderate:2, Sedentary:3')
-
-print('for Cholesterol enter High:0, BorderLine:1, Normal:2')
-
-q = HeartDisease_infer.query(variables=['heartdisease'], 
-
- evidence={
- 'age': int(input('Enter Age: ')),
- 'Gender': int(input('Enter Gender: ')),
- 'Family': int(input('Enter Family History: ')),
- 'diet': int(input('Enter Diet: ')),
- 'Lifestyle': int(input('Enter Lifestyle: ')),
- 'cholestrol': int(input('Enter Cholestrol: '))
-})
-
-print(q)
-
-
-Prac 4
-Aim : K-Means Clustering
-
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-
-x = [4, 5, 10, 4, 3, 11, 14 , 6, 10, 12]
-y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
-
-plt.scatter(x, y)
-plt.show()
-
-data = list(zip(x, y))
-
-kmeans = KMeans(n_clusters=2)
-kmeans.fit(data)
-
-plt.scatter(x, y, c=kmeans.labels_)
-plt.show()
-
-
-Prac 5 
-Aim : Data Visualization Using Python
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-data = pd.read_csv("C:/Users/Lokesh/Downloads/tips.csv")
-
-plt.scatter(data['day'], data['tip'])
-plt.title("Scatter Plot")
-plt.xlabel('Day')
-plt.ylabel('Tip')
-plt.show()
-
-
-Prac 6 
-Aim : Pie Diagram, Bar Chart Diagram using Python
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-data = pd.read_csv("C:/Users/Lokesh/Downloads/tips.csv")
-
-# Bar chart with day against tip
-
-plt.bar(data['day'], data['tip'])
-plt.title("Bar Chart")
-plt.xlabel('Day')
-plt.ylabel('Tip')
-plt.show()
-
-#Pie chart
-
-import matplotlib.pyplot as plt
-import numpy as np
-y=np.array([35,25,25,15])
-mylabels=["Apples","Bananas","Cherries","Dates"]
-plt.pie(y,labels=mylabels)
-plt.show()
-
-
-Prac 7 
-Aim : ETL process in Python for Web Scrapping
-
-import requests
-from bs4 import BeautifulSoup
-
-def check_word_in_webpage(url, word):
- response = requests.get(url)
- if response.status_code == 200:
- soup = BeautifulSoup(response.content, 'html.parser')
- text_content = soup.get_text()
- if word.lower() in text_content.lower():
- print(f"The word '{word}' is present in the webpage.")
- 
- else:
- print(f"The word '{word}' is not present in the webpage.")
-
- else:
- print("Failed to retrieve webpage.")
-
-url = input("Enter the url you want to Scrap : ")
-
-word_to_check = input("Enter the text you want to know which is present or not : ")
-
-check_word_in_webpage(url, word_to_check)
-
-
-Prac 8 
-Aim : Data visualization using python libraries
-
-#MATPLOTLIB
-
-import pandas as pd
-import matplotlib. pyplot as plt
-
-data = pd.read_csv("C:/Users/Lokesh/Downloads/nifty50-index.csv")
-print(data)
-
-plt. plot(data['Open '],marker = "o",markeredgecolor="white", markerfacecolor="blue")
-
-plt. plot(data['Close '],marker = "o",markeredgecolor="white", markerfacecolor="orange")
-plt.grid()
-plt. title("Line Plot of NIFTY-50 by using Matplotlib")
-plt. xlabel('Open')
-plt. ylabel('Close')
-plt.legend(['Open', 'Close'])
-plt. show()
-
-#SEABORN
-
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-data = pd.read_csv("C:/Users/Lokesh/Downloads/nifty50-index.csv")
-
-plt.figure(figsize=(10, 6))
-
-sns.lineplot(data=data[['Open', 'Close']], markers=True, marker='o', 
-
-markeredgecolor="white", palette=['green', 'red'])
-
-plt.title("Line Plot of NIFTY-50 by using Seaborn")
-plt.xlabel('Index')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
-
-
-#PLOTLY
-
-import pandas as pd
-import plotly.express as px
-
-data = pd.read_csv("C:/Users/Lokesh/Downloads/nifty50-index.csv")
-
-fig = px.line(data, x=data.index, y=['Open', 'Close'], markers=True,
-
- title="(Line Plot of NIFTY-50 using Plotly", 
-
-labels={'index': 'Index', 'value': 'Price'},
-
- color_discrete_sequence=['green', 'red'])
-
-fig.update_layout(legend_title='Price', legend=dict(x=0, y=1, traceorder='normal'),
-
- plot_bgcolor='rgba(0,0,0,0)')
-
-fig.show()
-
-
-Prac 9
-Aim : Decision Tree Classifier
-
-import numpy as np
-import pandas as pd # Import Pandas for data loading
-import matplotlib.pyplot as plt
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-data = pd.read_csv(' C:/Users/Lokesh/Downloads/iris.csv')
-print(data.head())
-
-X = data.drop('species', axis=1)
-y = data['species']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-model = DecisionTreeClassifier()
-model.fit(X_train, y_train)
-
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-
-print(f"Accuracy: {accuracy:.2f}")
-
-plt.figure(figsize=(12, 8))
-plot_tree(model, filled=True, feature_names=X.columns, 
-
-class_names=y.unique().astype(str))
-
-plt.title("Decision Tree Visualization")
-plt.show()
-
-
+Step-1: Enter the URL you want Grabify to shorten and track the details.
+Step-2: Share the shortened link with another user and when the user opens it, their IP Address and few details will be captured.
+Step-3: With the IP address that’s been logged. We can Enter that IP in what is my IP address site and get the location. https://whatismyipaddress.com/
+
+
+Prac 5 : SMS Bomber
+An SMS or phone bomber is a term that refers to a malicious activity where someone sends many unwanted and often repetitive text messages or phone calls to a specific phone number. This is typically done to overwhelm and disrupt the target's communication devices and can be considered a form of harassment.
+
+Step-1: Enter the Phone Number where you want to bomb SMS/phone calls. After adding the number, it will show that the SMS bomb has been started.
+Step-2: You can also protect your number, so it won’t be bombed by anyone!
+
+
+Prac 6 : UI path
+UiPath stands as a trailblazer in the realm of Robotic Process Automation (RPA) software, offering 
+organizations across diverse sectors a powerful platform to streamline operations and enhance productivity. 
+By harnessing the capabilities of software robots to automate repetitive tasks, UiPath empowers human 
+workers to redirect their efforts towards tasks that require creativity and problem-solving. This symbiotic 
+relationship between automation and human ingenuity heralds a new era of efficiency and innovation in the 
+workplace. With UiPath leading the charge, the future of work is characterized by enhanced productivity, 
+streamlined processes, and a focus on value-added activities.
+Step-1: Access UiPath Studio and initiate the creation of a new process.
+Step-2: Incorporate an Input Dialog, SMTP Mail Message, and Message Box into the workflow.
+Step-3: provide the port number, server name (smtp.gmail.com), Gmail address, and password. Choose one of the following port numbers for configuration.
+For Port, enter one of the following numbers:
+For SSL, enter 465.
+For TLS, enter 587.
+Step-4: Execute the process and input the recipient's email address.
+Step 5: - The recipients should receive an email resembling this format.
+
+
+Prac 7 : Wireshark 
+Wireshark is a widely used network protocol analyzer, commonly referred to as a "packet sniffer." It allows users to inspect the data traffic on a computer network in real-time and analyze it for troubleshooting, diagnostic, security, and educational purposes. Wireshark is available for various platforms including Windows, macOS, and Linux. 
+Wireshark is widely used by network administrators, security professionals, developers, and educators to analyze and troubleshoot network issues, investigate security incidents, and learn about network protocols and traffic patterns. It's a powerful tool for gaining insights into network communications and diagnosing complex networking problems.
+
+Step-1: Begin by launching Wireshark, where you have the option to either open pre-captured files in formats like pcap or pcapng or initiate a live capture directly from the network.
+Step-2: Begin Wireshark in the background and navigate to an insecure website to retrieve the credentials. 
+Sample Website: http://testphp.vulnweb.com/login.php
+Step-3: Cease capturing data packets, then access the search filter and input "http" to display all packets related to the HTTP protocol.
+Step-4: To pinpoint the specific packet, input "http.request.method=="POST"" in the display filter. Once selected, observe that the credentials are revealed within the packet.
+
+
+Prac 8 : FTK IMAGER 
+FTK Imager, developed by AccessData, stands as a pivotal tool in the realm of digital forensics, specifically designed for creating forensic images of various storage devices. Widely utilized in digital investigations, it offers a comprehensive array of features catering to the intricate demands of forensic analysis. With FTK Imager, users can seamlessly perform the following tasks:
+Forensic Imaging: Generate precise duplicates of storage devices, including hard drives, USB drives, and memory cards, preserving the integrity of the original data throughout the imaging process.
+Mount Forensic Images: Facilitate the analysis of forensic images without modifying the original data, enabling investigators to explore and scrutinize the contents with utmost accuracy.
+File Recovery: Uncover and retrieve files residing in unallocated space, providing insights into data that might not be accessible through conventional means.
+Hash Calculation: Compute hash values for integrity verification, ensuring the authenticity and integrity of forensic images and collected evidence.
+Step-1: Launch FTK Imager Manager and opt for "Create Disk Image."
+Step-2: Choose the source as "physical" and designate the physical drive accordingly.
+Step-3: Add image destination and select the image type as raw.
+Step-4: Provide the details for the evidence item and specify the destination for the image. Name the 
+image file as "FTKimg" and adjust the Image Fragment Size to 0.
+Step-5: It will start creating the image file and then you can verify the results.
+Step-6: Go to the given destination and verify the result.
+
+
+Prac 9 : nCAT
+Ncat stands as a robust networking utility within the Nmap suite, renowned for its prowess in network 
+
+exploration, security auditing, and network service administration. This command-line tool facilitates the 
+seamless exchange of data across network connections, bolstered by support for a diverse range of 
+
+protocols including TCP, UDP, SSL, and IPv6.Ncat is a versatile networking utility for:
+1. Port scanning and service discovery.
+2. Network troubleshooting and traffic inspection.
+3. Secure remote administration.
+4. File transfer, with support for encryption.
+Note: 
+NCAT is a Cli based tool
+Reverse shell : session created using remote/attacker system
+Bind shell : session created using target system
+
+
+Prac 10 : SQL injection 
+SQL injection attacks occur when attackers input malicious SQL statements into input fields or parameters of a web application. These injections can bypass authentication, retrieve sensitive data, modify database contents, or even execute administrative operations on the database server. The vulnerability arises from improper sanitization or validation of user inputs in the application code, allowing attackers to manipulate 
+SQL queries. To mitigate SQL injection risks, developers should use parameterized queries, input validation, and proper access controls to prevent unauthorized database access. Regular security audits and updates are essential to identify and patch potential vulnerabilities, safeguarding against such attacks
+Step1: Launch SQLMap on Kali Linux.
+Step 2: Input the command for SQLMap to inject the payload and retrieve the database from the vulnerable website.
+Step 3: Now we’ve access of DB lets get into the table using SQL map
+Step 4: Delve deeper into what information this table contains.
+Step 5: We notice that tables have columns such as "name" that we can access. This hack demonstrates 
+that even without logging in or escalating privileges, data can be accessed through SQL injection.
+
+
+Prac 11 : Maltego 
+Maltego serves as a tool for data visualization and analysis, utilized primarily for information gathering and intelligence purposes. It empowers users to collect and scrutinize data from diverse sources such as public databases, social networks, and online services, enabling the creation of 
+visual representations that highlight relationships and connections between various entities.
+In contrast, SQL injection stands as a cyber attack method targeting web applications reliant on SQL (Structured Query Language) databases. This attack exploits vulnerabilities within these applications, wherein the attacker inserts malicious SQL code into input fields or parameters. By 
+doing so, the attacker manipulates the application into executing unintended SQL commands. The ramifications include unauthorized access to sensitive data, data manipulation, and potential complete takeover of the database server.While Maltego itself is not expressly designed for executing SQL injection attacks, it can be employed during the reconnaissance phase of an attack. In this capacity, it aids in gathering 
+information about potential targets and identifying vulnerabilities that could be exploited via SQL injection techniques.
+
+Step1: Register and go to the home page.
+Step 2: In the toolbar above, choose "Machines," then select "URL to Network and Domain 
+Information." This option enables the search for all potential connections associated with the provided 
+URL.
+Step 3: Enter the URL you want to Investigate.
+Output: Every connection to Hinduja College website is visible in connective manner
+
+
+Prac 12 : PuttySSH
+PuTTY is a free and open-source terminal emulator, serial console and network file transfer application. It supports several network protocols, including SCP, SSH, Telnet, rlogin, and raw socket connection. It can also connect to a serial port. The name "PuTTY" has no official meaning. PuTTY was originally written for Microsoft Windows, but it has been ported to various other operating systems. Official ports are available for some Unix-like platforms, with work-in-progress ports to Classic Mac OS and macOS, and unofficial ports have been contributed to platforms such as Symbian, Windows Mobile and 
+Windows Phone. PuTTY was written and is maintained primarily by Simon Tatham, a British programmer.
+Prerequisite:
+1. Apt update: To download all the updates.
+2. apt install openssh-server: to install ssh services.
+3. Install putty to the client OS (i.e., Host OS windows) 
+4. apt install ufw
+Step 1: Check the SSH status
+Step 2: Service ssh start to start the ssh service.
+Step 3:
+UFW stands for Uncomplicated Firewall. It's a program that manages firewall rules in Linux. 
+UFW is designed to be easy to use and has a command-line interface. It's available by default in all Ubuntu installations since 8.04 LTS.
+UFW uses iptables to configure firewall rules. Iptables has a complex syntax, so using UFW is a useful 
+alternative. UFW minimizes the effort of setting up a firewall by starting with an optimal default configuration. 
+UFW can be used in: Arch Linux, Debian, Ubuntu. UFW can use either iptables or nftables as the back-end firewall.
+UFW can be used to: 
+Allow by specific port, IP address, and protocol
+Allow IP address 192.168.0.4 access to port 22 using TCP
+Step 4: Now we’ve given all the persmission lets make the file which we will transfer via ssh.
+Step 5: Copy the kali IP and paste it in PUTTY.
+Step 6: Accept it.
+Step 7: Login by entering credential(mostly for ssh [kali, kali] is [login, pass]
+Step 8: Escalate the user from normal user to root user.
+Step 9: Finally got into the directory where is saved the file.
+Step 10: Same File can be access from kali VM into the Host OS via SSH.
+Step 11: we’ve edited the kali’s file from host OS and it is reflected into the KALI VM also.
