@@ -1,184 +1,561 @@
-Prac 1 : RSA
+PRACTICAL-1: ASP.NET CORE MVC
 
-RSA, named after its creators Rivest, Shamir, and Adleman, is a prevalent public-key cryptosystem pivotal in secure data transmission. It operates with a pair of keys: a public one for 
-encryption and a private one for decryption. Its security hinges on the challenge of factoring large prime numbers, making it a stalwart defense. RSA finds extensive application in internet security, safeguarding emails, digital signatures, and HTTPS connections. However, as computing power advances, longer key lengths are advised to uphold its security standards.
+Step-1: Install .Net Core Sdk (Link: https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install)
 
-install pycryptodome
+Step-2: Create folder MyMVC folder in D: drive or any other drive. 
 
-from Crypto.Publickey import RSA from Crypto import Random
-from Crypto.Cipher import PKCS1_v1_5
-random generator = Random. new() .read key = RSA.generate(4096, random_generator)message = b'Lokesh KFMSCIT004
-cipher = PKCS1_v1_5.new(key)
-encrypted message = cipher.encrypt(message)
-decrypted message = cipher .decrypt(encrypted message,None)
-print("Encrypted message:", encrypted message)
-print("Decrypted message:", decrypted_ message)
+Step-3: Open command prompt and perform the following operations.
+Command to create mvc project:
+(in command prompt) cd myc (in D drive)
+dotnet new mvc --auth none
 
-Prac 2 : IP configuration 
+Step-4: Go to controllers’ folder and modify HomeController.cs file to match following: 
 
- IP Config Command:
-To access network-related details on a Windows system, utilize the "ipconfig" command within the Command Prompt. Upon execution, this command will present a comprehensive overview of network configurations for all interfaces. It encompasses vital information such as IP addresses, subnet masks, default gateways, and additional network interface specifics.
+using System;
+using System.Collections.Generic;
+using System.Diagnostics; 
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc; 
+using Microsoft.Extensions.Logging; 
+using MyMVC.Models;
+namespace MyMVC.Controllers
+{ public class HomeController : Controller
+{
+public String Index()
+{ return " Hello world"; }
+}
+}
 
-ipconfig/all
-This command provides in-depth insights into all network interfaces present on your Windows system. It covers a range of essential details, including IP configuration, MAC address, subnet 
-mask, default gateway, DNS servers, and additional relevant information.
+Step-5: Run the project.
+(in command prompt) dotnet run
+Now open browser and and type URL: localhost:5073
 
-ipconfig /displaydns
- This command reveals the contents of the DNS resolver cache within your Windows system. It presents a listing of recently resolved DNS names along with their corresponding IP addresses.
+Step-6: Now go back to command prompt and stop running project using CTRL+C.
 
- ipconfig /flushdns
-This command serves to flush (clear) the DNS resolver cache, eliminating all entries stored within it. This action prompts the system to re-query DNS servers for subsequent domain resolutions.
+Step-7: Go to models’ folder and add new file StockQuote.cs to it with following content: 
 
-wmic os get osarchitecture
-This Windows Management Instrumentation Command-line (WMIC) query retrieves information about the operating system architecture (32-bit or 64-bit). When you run this command, it will display either "32-bit" or "64-bit," indicating the architecture of your operating system.
+using System;
+namespace MyMVC.Models
+{
+public class StockQuote
+{ public string Symbol {get;set;} 
+public int Price{get;set;}
+}
+}
 
+Step-8: Now Add View to folder then home folder in it and modify index.cshtml file to match following: 
 
-Prac 3 : Browser History Examiner (BHE)
+@{
+ViewData["Title"] = "Home Page";
+}
+<div>
+Symbol: @Model.Symbol <br/> 
+Price: $@Model.Price <br/>
+</div>
 
-Browser History Examiner (BHE) is a forensic software tool designed to capture, analyze, and generate reports on internet history gleaned from primary desktop web browsers. 
- Its utility extends to a spectrum of digital investigations, including civil and criminal digital 
-forensics cases, security incidents, human resources inquiries, and the monitoring of general employee activity.
+Step-9: Now modify HomeController.cs file to match following: 
 
-Step-1: Download and install the BHE from https://www.foxtonforensics.com/browser-history-examiner/download
-Step-2: Upon successful installation and initiation of BHE, it will prompt the user to choose between capturing new history data or loading existing history files.
-Step-3: The tool will inquire whether you wish to capture historical data from the current computer or from a remote one. Following that, it will prompt you to specify the browser whose history you intend to capture and designate the destination for storing the captured data.
-Step-4: It will start capturing the data and will show the captured data so we can analyze it.
+using System;
+using System.Collections.Generic;
+using System.Diagnostics; 
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc; 
+using Microsoft.Extensions.Logging; 
+using MyMVC.Models;
+namespace MyMVC.Controllers
+{
+public class HomeController : Controller
+{ public async Task <IActionResult> Index()
+{
+var model= new StockQuote{ Symbol='HLLO', Price=3200}; 
+return View(model);
+}
+}
+}
 
+Step-10: Now run the project using:
+dotnet run
 
-Prac 4 : Grabify
-
-Grabify operates as a URL shortening service, akin to platforms like Bitly or TinyURL. However, it has garnered a reputation for its potential involvement in malicious activities. This is due to its capability to 
-track and gather information about users who click on the shortened links it generates. Consequently, Grabify has been linked to various privacy and security concerns, as it has been utilized in phishing schemes, online harassment, and other nefarious endeavors. As such, users should exercise vigilance when encountering shortened URLs, particularly those from unfamiliar or dubious sources.
-
-Here's how it typically works:
-
-1) A user creates a shortened URL using Grabify.
-2) When someone clicks on the Grabify link, it redirects them to the intended destination.
-3) In the background, Grabify logs various information about the visitor, including their IP address, device details, location, and other data.
-
-Step-1: Enter the URL you want Grabify to shorten and track the details.
-Step-2: Share the shortened link with another user and when the user opens it, their IP Address and few details will be captured.
-Step-3: With the IP address that’s been logged. We can Enter that IP in what is my IP address site and get the location. https://whatismyipaddress.com/
-
-
-Prac 5 : SMS Bomber
-An SMS or phone bomber is a term that refers to a malicious activity where someone sends many unwanted and often repetitive text messages or phone calls to a specific phone number. This is typically done to overwhelm and disrupt the target's communication devices and can be considered a form of harassment.
-
-Step-1: Enter the Phone Number where you want to bomb SMS/phone calls. After adding the number, it will show that the SMS bomb has been started.
-Step-2: You can also protect your number, so it won’t be bombed by anyone!
-
-
-Prac 6 : UI path
-UiPath stands as a trailblazer in the realm of Robotic Process Automation (RPA) software, offering 
-organizations across diverse sectors a powerful platform to streamline operations and enhance productivity. 
-By harnessing the capabilities of software robots to automate repetitive tasks, UiPath empowers human 
-workers to redirect their efforts towards tasks that require creativity and problem-solving. This symbiotic 
-relationship between automation and human ingenuity heralds a new era of efficiency and innovation in the 
-workplace. With UiPath leading the charge, the future of work is characterized by enhanced productivity, 
-streamlined processes, and a focus on value-added activities.
-Step-1: Access UiPath Studio and initiate the creation of a new process.
-Step-2: Incorporate an Input Dialog, SMTP Mail Message, and Message Box into the workflow.
-Step-3: provide the port number, server name (smtp.gmail.com), Gmail address, and password. Choose one of the following port numbers for configuration.
-For Port, enter one of the following numbers:
-For SSL, enter 465.
-For TLS, enter 587.
-Step-4: Execute the process and input the recipient's email address.
-Step 5: - The recipients should receive an email resembling this format.
+Step-11: Now go back to browser and refresh to get modified view response.
 
 
-Prac 7 : Wireshark 
-Wireshark is a widely used network protocol analyzer, commonly referred to as a "packet sniffer." It allows users to inspect the data traffic on a computer network in real-time and analyze it for troubleshooting, diagnostic, security, and educational purposes. Wireshark is available for various platforms including Windows, macOS, and Linux. 
-Wireshark is widely used by network administrators, security professionals, developers, and educators to analyze and troubleshoot network issues, investigate security incidents, and learn about network protocols and traffic patterns. It's a powerful tool for gaining insights into network communications and diagnosing complex networking problems.
+PRACTICAL-2: BUILDING ASP.NET CORE REST API
 
-Step-1: Begin by launching Wireshark, where you have the option to either open pre-captured files in formats like pcap or pcapng or initiate a live capture directly from the network.
-Step-2: Begin Wireshark in the background and navigate to an insecure website to retrieve the credentials. 
-Sample Website: http://testphp.vulnweb.com/login.php
-Step-3: Cease capturing data packets, then access the search filter and input "http" to display all packets related to the HTTP protocol.
-Step-4: To pinpoint the specific packet, input "http.request.method=="POST"" in the display filter. Once selected, observe that the credentials are revealed within the packet.
+Step-1: Download and install.
+
+To start building .NET apps you just need to download and install the .NET SDK (Software Development 
+Kit version 3.0 above).
+Link: https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install
+
+Step-2: Check everything installed correctly. Once you've installed, open a new command prompt and run 
+the following command:
+
+Command prompt: > dotnet
+
+CREATE YOUR WEB API:
+
+Step-1: Open two command prompts. 
+
+Command prompt 1:
+dotnet new webapi -o Glossary
+cd Glossary 
+dotnet run
+
+Command Prompt 2: (try running ready-made weatherforecast class for testing)
+
+curl --insecure http://localhost:5089/weatherforecast
+
+Step-3: Now Change the content:
+To get started, remove the WeatherForecast.cs file from the root of the project and the 
+WeatherForecastController.cs file from the Controllers folder.
+
+Add Following two files.
+
+1) D:\Glossary\GlossaryItem.cs (type it in notepad and save as all files)
+
+//GlossaryItem.cs 
+
+namespace Glossary {
+public class GlossaryItem{
+public string Term { get; set; }
+public string Definition { get; set; }}}
+
+2) D:\Glossary\Controllers\ GlossaryController.cs (type it in notepad and save as all files)
+
+//Controllers/GlossaryController.cs 
+
+using System;
+using System.Collections.Generic; 
+using Microsoft.AspNetCore.Mvc; 
+using System.IO;
+namespace Glossary.Controllers
+{
+[ApiController] 
+[Route("api/[controller]")]
+public class GlossaryController: ControllerBase
+{
+private static List<GlossaryItem> Glossary = new List<GlossaryItem> { 
+new GlossaryItem
+{
+Term= "HTML",
+Definition = "Hypertext Markup Language"
+},
+new GlossaryItem
+{
+Term= "MVC",
+Definition = "Model View Controller"
+},
+new GlossaryItem
+{
+Term= "OpenID",
+Definition = "An open standard for authentication"
+}
+};
+[HttpGet]
+public ActionResult<List<GlossaryItem>> Get()
+{ return Ok(Glossary);
+}
+[HttpGet] 
+[Route("{term}")]
+public ActionResult<GlossaryItem> Get(string term)
+{
+var glossaryItem = Glossary.Find(item =>
+item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase)); 
+
+if (glossaryItem == null)
+{ return NotFound();
+}
+else
+{
+return Ok(glossaryItem);
+}
+}
+[HttpPost]
+public ActionResult Post(GlossaryItem glossaryItem)
+{
+var existingGlossaryItem = Glossary.Find(item => 
+item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase)); 
+if (existingGlossaryItem != null)
+{
+return Conflict("Cannot create the term because it already exists.");
+}
+else
+{
+Glossary.Add(glossaryItem);
+var resourceUrl = Path.Combine(Request.Path.ToString(), Uri.EscapeUriString(glossaryItem.Term)); 
+return Created(resourceUrl, glossaryItem);
+}
+}
+[HttpPut]
+public ActionResult Put(GlossaryItem glossaryItem)
+{
+var existingGlossaryItem = Glossary.Find(item => 
+item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase)); 
+if (existingGlossaryItem == null)
+{
+return BadRequest("Cannot update a nont existing term.");
+}
+else
+{
+existingGlossaryItem.Definition = glossaryItem.Definition; 
+return Ok();
+}
+}
+[HttpDelete] 
+[Route("{term}")]
+public ActionResult Delete(string term)
+{
+var glossaryItem = Glossary.Find(item =>
+item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase)); 
+if (glossaryItem == null)
+{ return NotFound();
+}
+else
+{ Glossary.Remove(glossaryItem); 
+return NoContent();
+}}}}
+
+On Command prompt 2:
+1) Getting a list of item
+
+curl --insecure http://localhost:5202/api/glossary
+
+2) Getting a single item
+
+curl --insecure https://localhost:5202/api/glossary/MVC
+
+3) Creating an item
+
+curl --insecure -X POST -d "{\"term\": \"MFA\", \"definition\":\"An authentication process.\"}" -H
+
+"Content-Type:application/json" https://localhost:5202/api/glossary
 
 
-Prac 8 : FTK IMAGER 
-FTK Imager, developed by AccessData, stands as a pivotal tool in the realm of digital forensics, specifically designed for creating forensic images of various storage devices. Widely utilized in digital investigations, it offers a comprehensive array of features catering to the intricate demands of forensic analysis. With FTK Imager, users can seamlessly perform the following tasks:
-Forensic Imaging: Generate precise duplicates of storage devices, including hard drives, USB drives, and memory cards, preserving the integrity of the original data throughout the imaging process.
-Mount Forensic Images: Facilitate the analysis of forensic images without modifying the original data, enabling investigators to explore and scrutinize the contents with utmost accuracy.
-File Recovery: Uncover and retrieve files residing in unallocated space, providing insights into data that might not be accessible through conventional means.
-Hash Calculation: Compute hash values for integrity verification, ensuring the authenticity and integrity of forensic images and collected evidence.
-Step-1: Launch FTK Imager Manager and opt for "Create Disk Image."
-Step-2: Choose the source as "physical" and designate the physical drive accordingly.
-Step-3: Add image destination and select the image type as raw.
-Step-4: Provide the details for the evidence item and specify the destination for the image. Name the 
-image file as "FTKimg" and adjust the Image Fragment Size to 0.
-Step-5: It will start creating the image file and then you can verify the results.
-Step-6: Go to the given destination and verify the result.
+4) Update Item
+
+curl --insecure -X PUT -d "{\"term\": \"MVC\", \"definition\":\"Modified record of Model View 
+
+Controller.\"}" -H "Content-Type:application/json" http://localhost:5202/api/glossary
+
+5) Delete Item
+
+curl --insecure --request DELETE --url http://localhost:5202/api/glossary/openid
+
+PRACTICAL-3: WORKING WITH DOCKER
+
+Step-1: Create Docker Hub account (sign up).
+
+Step-2: Login to https://labs.play-with-docker.com/
+Click on start.
+
+Step-3: Add new instance.
+
+Step-4: Perform following:
+
+Method 1:
+1) To pull and push images using docker. 
+Command to check docker version. 
+
+docker –version
+
+2) To pull readymade image
+Command:
+
+docker pull rocker/verse
+
+3) To check images in docker 
+Command: docker images
+
+Now Login to docker hub and create repository
+
+Click on the Create button. 
+
+Now check repository created.
+
+To login to your docker account 
+
+docker login –username=kbdocker11
+
+password:
+
+Command: To tag image
+
+docker tag fd553ed661ad kbdocker11/repo1:firsttry
+
+Note: here fd553ed661ad this is image ID which you can get from docker img
+
+Command: to push image to docker hub account 
+
+docker push kbdocker11/danielrepo1:firsttry
+Check it in docker hub now.
+Click on tags and check.
 
 
-Prac 9 : nCAT
-Ncat stands as a robust networking utility within the Nmap suite, renowned for its prowess in network 
+Method 2:
+Build an image then push it to docker and run it
 
-exploration, security auditing, and network service administration. This command-line tool facilitates the 
-seamless exchange of data across network connections, bolstered by support for a diverse range of 
+Command: to create docker file
 
-protocols including TCP, UDP, SSL, and IPv6.Ncat is a versatile networking utility for:
-1. Port scanning and service discovery.
-2. Network troubleshooting and traffic inspection.
-3. Secure remote administration.
-4. File transfer, with support for encryption.
-Note: 
-NCAT is a Cli based tool
-Reverse shell : session created using remote/attacker system
-Bind shell : session created using target system
+1. cat > Dockerfile <<EOF
 
+2. FROM busybox
 
-Prac 10 : SQL injection 
-SQL injection attacks occur when attackers input malicious SQL statements into input fields or parameters of a web application. These injections can bypass authentication, retrieve sensitive data, modify database contents, or even execute administrative operations on the database server. The vulnerability arises from improper sanitization or validation of user inputs in the application code, allowing attackers to manipulate 
-SQL queries. To mitigate SQL injection risks, developers should use parameterized queries, input validation, and proper access controls to prevent unauthorized database access. Regular security audits and updates are essential to identify and patch potential vulnerabilities, safeguarding against such attacks
-Step1: Launch SQLMap on Kali Linux.
-Step 2: Input the command for SQLMap to inject the payload and retrieve the database from the vulnerable website.
-Step 3: Now we’ve access of DB lets get into the table using SQL map
-Step 4: Delve deeper into what information this table contains.
-Step 5: We notice that tables have columns such as "name" that we can access. This hack demonstrates 
-that even without logging in or escalating privileges, data can be accessed through SQL injection.
+3. CMD echo "Hello world! This is my first Docker image."
 
+4. EOF
 
-Prac 11 : Maltego 
-Maltego serves as a tool for data visualization and analysis, utilized primarily for information gathering and intelligence purposes. It empowers users to collect and scrutinize data from diverse sources such as public databases, social networks, and online services, enabling the creation of 
-visual representations that highlight relationships and connections between various entities.
-In contrast, SQL injection stands as a cyber attack method targeting web applications reliant on SQL (Structured Query Language) databases. This attack exploits vulnerabilities within these applications, wherein the attacker inserts malicious SQL code into input fields or parameters. By 
-doing so, the attacker manipulates the application into executing unintended SQL commands. The ramifications include unauthorized access to sensitive data, data manipulation, and potential complete takeover of the database server.While Maltego itself is not expressly designed for executing SQL injection attacks, it can be employed during the reconnaissance phase of an attack. In this capacity, it aids in gathering 
-information about potential targets and identifying vulnerabilities that could be exploited via SQL injection techniques.
+Command: To build image from docker file. 
 
-Step1: Register and go to the home page.
-Step 2: In the toolbar above, choose "Machines," then select "URL to Network and Domain 
-Information." This option enables the search for all potential connections associated with the provided 
-URL.
-Step 3: Enter the URL you want to Investigate.
-Output: Every connection to Hinduja College website is visible in connective manner
+docker build –t kbdocker11/repo2 
+
+Command: To check docker images. 
+
+docker images
+
+Command: To push image to docker hub. docker
+
+push kbdocker11/repo2
+
+Now check it on docker hub
+
+Command: To run docker image. 
+
+docker run kbdocker11/repo2
 
 
-Prac 12 : PuttySSH
-PuTTY is a free and open-source terminal emulator, serial console and network file transfer application. It supports several network protocols, including SCP, SSH, Telnet, rlogin, and raw socket connection. It can also connect to a serial port. The name "PuTTY" has no official meaning. PuTTY was originally written for Microsoft Windows, but it has been ported to various other operating systems. Official ports are available for some Unix-like platforms, with work-in-progress ports to Classic Mac OS and macOS, and unofficial ports have been contributed to platforms such as Symbian, Windows Mobile and 
-Windows Phone. PuTTY was written and is maintained primarily by Simon Tatham, a British programmer.
-Prerequisite:
-1. Apt update: To download all the updates.
-2. apt install openssh-server: to install ssh services.
-3. Install putty to the client OS (i.e., Host OS windows) 
-4. apt install ufw
-Step 1: Check the SSH status
-Step 2: Service ssh start to start the ssh service.
-Step 3:
-UFW stands for Uncomplicated Firewall. It's a program that manages firewall rules in Linux. 
-UFW is designed to be easy to use and has a command-line interface. It's available by default in all Ubuntu installations since 8.04 LTS.
-UFW uses iptables to configure firewall rules. Iptables has a complex syntax, so using UFW is a useful 
-alternative. UFW minimizes the effort of setting up a firewall by starting with an optimal default configuration. 
-UFW can be used in: Arch Linux, Debian, Ubuntu. UFW can use either iptables or nftables as the back-end firewall.
-UFW can be used to: 
-Allow by specific port, IP address, and protocol
-Allow IP address 192.168.0.4 access to port 22 using TCP
-Step 4: Now we’ve given all the persmission lets make the file which we will transfer via ssh.
-Step 5: Copy the kali IP and paste it in PUTTY.
-Step 6: Accept it.
-Step 7: Login by entering credential(mostly for ssh [kali, kali] is [login, pass]
-Step 8: Escalate the user from normal user to root user.
-Step 9: Finally got into the directory where is saved the file.
-Step 10: Same File can be access from kali VM into the Host OS via SSH.
-Step 11: we’ve edited the kali’s file from host OS and it is reflected into the KALI VM also.
+PRACTICAL-4: Installing software packages on Docker
+
+Pre-Requisites:
+
+1. Open Windows Firewall
+
+2. Click on Advanced Security
+
+3. Click on Inbound Rules
+
+4. Create a New Rule
+
+a. Which type of rule would you like to create port.
+
+b. Does this rule apply to the local ports or specific local ports.
+
+c. Select Specific local ports - 80.
+
+d. What action should be taken when a connection matches the specified conditions? - Allow the 
+connection
+
+e. When does this apply? - Domain, Private, Public
+
+f. Name: ReportServer
+
+g. Description: ReportServer
+
+Step 1: Enter the following Commands.
+
+a) docker pull nginx nginx: nginx is the image which is already available in docker
+
+b) docker run -it-name-webapp -d -p 80:80 nginx: Create a webapp and run it with nginx image on port 80
+
+Step 2: Click on Port and enter 80 in the dropdown window and click OK.
+
+Step 3: Enter the below command to enter bash shell and then open port 80. docker exec -it WebApp bash
+Cd/usr/share/nginx/html
+Echo "Hello Welcome to updated nginx Page."> index.html 
+exit
+
+Step 4: List all the running containers: docker ps
+
+Step 5: Create another container in Docker: webappl 
+
+Docker run -it --name=webapp1 -d -p 80:80 nginx:
+
+Step 6: Click on port and enter 80 in the dropdown and click ok.
+
+
+PRACTICAL-5: Working with Docker volumes and networks
+
+Problem: Updates made in one container are not reflected into another container. 
+
+Solution: Volume
+
+Updates made in one container within the volume will be reflected in all the containers of that volume.
+
+Step 7: Creation of Volume(MyVolume)
+
+Command:
+
+a) docker volume create MyVolume
+b) docker volume is
+c) docker volume inspect MyVolume
+d) docker stop WebAppl
+
+Step 8: Create a container (WebApp 2 ) inside the container MyVolume
+
+docker run -d-name = WebApp2-mount source-MyVolume,destination=/usr/share/nginx/html -p 80:80 
+
+nginx
+
+Step 9: Enter the below commands:
+
+a) ls/
+
+b) cd /var/lib/docker
+
+c) ls
+
+d) cd volumes
+
+e) ls
+
+f) cd MyVolume
+
+g) Is
+
+h) cd_data
+
+Step 10:Edit the index file with the below content to "Display the content on the Webpage."
+
+Open Port 80
+
+Step 11: Stop the above container (WebApp2) and Create another container within the volume 
+(MyVolume)
+
+Open port 80
+
+Output: The edits made in one container of the volume will be reflected in all the containers of that volume
+
+
+PRACTICAL 06 Working with Circle CI for continuous integration
+
+Create a repository:
+
+1. Log in to GitHub and begin the process to create a new repository.
+
+2. Enter a name for your repository (for example, CircleCi).
+
+3. Select the option to initialize the repository with a README file.
+
+4. Finally, click Create repository.
+
+5. There is no need to add any source code for now.
+
+Login to Circle CI https://app.circleci.com/ Using GitHub Login, Once logged in navigate to Projects.
+
+Set up CircleCI
+
+1. Navigate to the CircleCI Projects page. If you created your new repository under an organization, you 
+will need to select the organization name.
+
+2. You will be taken to the Projects dashboard. On the dashboard, select the project you want to set up 
+(CircleCi).
+
+3. Select the option to commit a starter CI pipeline to a new branch, and click Set Up Project. This will 
+create a file
+
+4. .circleci/config.yml at the root of your repository on a new branch called circleci-project-setup.
+
+Your First Pipeline
+
+On your project's pipeline page, click the green Success button, which brings you to the workflow that 
+ran
+
+(say-hello- workflow).
+
+Within this workflow, the pipeline ran one job, called say-hello. Click say-hello to see the steps in this 
+job:
+
+· Spin up environment
+
+· Preparing environment variables
+
+· Checkout code
+
+· Say hello
+
+Now select the "say-hello-workflow" to the right of Success status column
+
+
+PRACTICAL 07 Creating Backing Service with ASP.NET Core.
+
+Login in to Play-With-Docker 
+
+Start typing following commands
+
+Step 1: Command :
+
+docker run -d -p 5000:5000 -e PORT=5000 \
+
+-e LOCATION URL=http://localhost:5001 \
+
+dotnetcoreservices/teamservice:location
+
+Step 2: Command: to run location service
+
+docker run -d -p 5001:5001 -e PORT=5001 dotnetcoreservices/locationservice:nodb
+
+Step 3: Command: to check running images in docker $docker images
+
+Step 4: Command: to create new team
+
+curl -H "Content-Type:application/json" -X POST -d \
+
+'{"id":"e52baa63-d511-417e-9e54-7aab04286281", "name":"KC"}' http://localhost:5000/teams
+
+Step 5: Command: curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
+
+Step 6: Command: to add new member to team
+
+curl -H "Content-Type:application/json" -X POST -d \
+
+'{"id":"63e7acf8-8fae-42ce-9349-3c8593ac8292", "firstName":"Mitali", "lastName":"Vishwekar"}' 
+
+http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281/members
+
+Step 7: Command: To confirm member added
+
+curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
+
+Step 8: Command: To add location for member
+
+curl -H "Content-Type:application/json" -X POST -d \
+
+'{"id":"64c3e69f-1580-4b2f-a9ff-2c5f3b8f0e1f", "latitude":12.0,"longitude":12.0,"altitude":10.0, 
+
+"timestamp":0,"memberId":"63e7acf8-8fae-42ce-9349-3c8593ac8292"}' 
+
+http://localhost:5001/locations/63e7acf8- 8fae-42ce-9349-3c8593ac8292
+
+Step 9: Command : To confirm location is added in member
+
+curl http://localhost:5001/locations/63e7acf8-8fae-42ce-9349-3c8593ac8292
+
+
+PRACTICAL 08 Working with Kubernetes
+
+Step 1 : Add a new Instance
+
+Step 2 : Create master node and create a Cluster Using the following commands
+
+Master: kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
+
+Step 3: Cluster: kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-
+
+router/master/daemonset/kubeadm-kuberouter.yaml
+
+Step 4: You Can Create worker node using the following command given by master node in an another instance
+
+Step 5: The Below Command Can be used to create Containers in the pods in master node/Control plane 
+
+kubectl create deployment my-dep --image=nginx --replicas=3
+
+Basic Commands
+
+View the nodes available - kubectl get nodes 
+
+View the pods available - kubectl get pods
+
+View the Services available - kubectl get services 
+
+Check the version - docker -v
